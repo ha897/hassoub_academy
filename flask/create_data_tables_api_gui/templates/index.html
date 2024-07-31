@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block base %}
+<style>
+    /* تحديد الألوان للنصفين */
+    body {
+        background: linear-gradient(to right, yellow 50%, blue 50%);
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    /* تنسيق النص */
+    h1 {
+        text-align: center;
+        padding: 100px 0;
+    }
+    img{
+        wedth:200px;
+        height:200px;
+    }
+
+    
+    figure{
+        display:inline-block;
+        margin:0% 15%;
+        transition: transform 0.3s ease-in-out;
+    }
+    figure:hover {
+        transform: scale(1.2); 
+    
+    }
+</style>
+<h1>table builder whis python <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
+    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"/>
+  </svg></h1>
+
+<a href="{{url_for('createtable_html')}}">
+    <figure>
+        <img src="{{url_for('static',filename='pythonWebTable.png')}}">
+        <figcaption><b>creat table from web page</b></figcaption>
+    </figure>
+</a>
+<a href="{{url_for('createtable')}}">
+    <figure style="float: right;">
+        <img wedth = "50" src="{{url_for('static',filename='pythonTable.png')}}">
+        <figcaption ><b>creat table from fake data</b></figcaption>
+    </figure>
+</a>
+
+
+{% endblock base %}

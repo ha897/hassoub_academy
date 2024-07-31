@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .main-div{
+
+            width: 600px;
+            height: 350px;
+            border: black 1px solid;
+            border-radius: 4px;
+            background-color: rgb(180, 180, 180);
+            margin: auto;
+    }
+        .container {
+            width: fit-content;
+            margin: auto;
+        }
+
+        .container>h4,
+        .container>span {
+            text-align: center;
+            display: block;
+        }
+
+        .data-table {
+            background-color: rgb(224, 224, 224);
+            height: 20vh;
+            overflow-y: scroll;
+            border: black 1px solid;
+            border-radius: 4px;
+            scrollbar-color: black transparent;
+        }
+
+        thead {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        table {
+            width: 400px;
+            height: 40vh;
+        }
+
+        .correct-answer {
+            background-color: #4caf50;
+        }
+        .div-form{
+            width: fit-content;
+            margin: auto;
+        }
+        .div-form input[type="text"]{
+            width: 400px;
+        }
+        .div-form input{
+            height: 30px;
+        }
+        .dounloud-db{
+            margin-top: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-div">
+    <div class="container">
+        <h4>
+            {{question}}
+        </h4>
+        {% if result %}
+        <span>database contant:</span>
+        <div class="data-table">
+            <table>
+                <thead>
+                    <tr>
+                        <td>name</td>
+                        <td>age</td>
+                    </tr>
+                </thead>
+                {% for row in result %}
+                {% if buth %}
+                    {% if name == row[0] and age == row[1] %}
+                    
+                    <tr class="correct-answer">
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                    </tr>
+                    {%else%}
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                    </tr>
+                    {% endif %}
+
+                {% elif name == row[0] and age == row[1] %}
+                <tr class="correct-answer">
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                </tr>
+                    {% else %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+
+        </div>
+            {% if result_stat == false %}
+            <h4>try again</h4>
+            <div>your answer: {{user_answer}}</div>
+            <div>correct answer: {{data_answer}}</div>
+            {% elif result_stat == true %}
+            <h4>correct answer!</h4>
+            
+            {% else %}
+            errrrrrrrrrrr
+            {% endif %}
+        {%else%}
+        <div class="div-form">
+            <form method="post" action="">
+                <label for="query"></label>
+                <input id="query" name="query" type="text" placeholder="enter SQL query here">
+                <input name="question" value="{{question}}" type="hidden">
+                <input type="submit" value="enter">
+            </form>
+        </div>
+        <div class="dounloud-db">
+        dounloud database
+            <form method="post" action="{{url_for('downloud_database')}}">
+            <input type="submit" value="dounloud">
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+</body>
+
+</html>

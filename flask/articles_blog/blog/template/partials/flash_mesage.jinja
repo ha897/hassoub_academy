@@ -1,0 +1,21 @@
+<div class="w-auto mx-auto text-center">
+{# احضار رسائل قلاش get_flashed_messages #}
+{# عرض فئة الرسائل with_categories #}
+{# ستعود على شكل قائمة من أزواج (الفئة، الرسالة) #}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {# نوع الرساله يغير شكل الجانة  #}
+            <div class="alert alert-{{ category }} alert-dismissible fade show d-inline" role="alert">
+                {{ message }}
+                {# زر اغلاق الرساله #}
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close">
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+</div>

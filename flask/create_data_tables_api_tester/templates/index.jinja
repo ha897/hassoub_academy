@@ -1,0 +1,33 @@
+{% extends "base.jinja" %}
+{% block base %}    
+
+<div class="card" style="width: 25rem; margin: 20px auto;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">
+    <form action="{{url_for('store')}}" method="POST" >
+        
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="table" id="flexRadioDefault1" value="create_table" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    create fake table
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="table" id="flexRadioDefault2" value="create_table_html">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    create table from html
+                </label>
+            </div>
+            
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin: 10px 0px 0px;">submit
+        </button>
+    </form>
+    </p>
+  </div>
+</div>
+
+
+{% endblock base %}

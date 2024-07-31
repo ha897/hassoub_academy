@@ -1,0 +1,102 @@
+{% extends "base.jinja" %}
+
+{% block base %}
+<div class="container">
+    <h1>Your Image :</h1>
+    <div class="row mt-2">
+        <div class="col-md-7">
+
+            <img class="img-fluid" src="https://for-images-python.s3.ap-southeast-2.amazonaws.com/uploads/{{image_name}}">
+        </div>
+        <div class="col-md-5">
+            {# Resize #}
+            {# ###################################################################### #}
+            <div class="card" style="width:30rem;">
+                <div class="card-body">
+                    <h2 class="card-title" >Resize :</h2>
+                    <form action="/resize" method="post">
+                        <input type="hidden" name="filename" value="{{image_name}}">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Width :</span>
+                            <input type="number" class="form-control" name="width">
+                            <span class="input-group-text">px</span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Height :</span>
+                        <input type="number" class="form-control" name="height">
+                        <span class="input-group-text">px</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Resize</button>
+                    </form>
+
+                </div>
+                
+            </div>
+            {# Resize presets #}
+            {# ###################################################################### #}
+            <div class="card" style="width:30rem;  margin:20px 0px;">
+                <div class="card-body">
+                    <h2 class="card-title" >Resize presets:</h2>
+
+                        <form action="/presets" method="post">
+                        
+                            <input type="hidden" name="filename" value="{{image_name}}">
+                            <div class="input-group mb-3">
+                                <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="preset">
+                                <option value="small">small</option>
+                                <option value="medium" selected>medium</option>
+                                <option value="large">large</option>
+                                </select>
+                            </div>
+
+                        
+                            <button type="submit" class="btn btn-primary">Resize</button>
+                        </form>
+                </div>
+            </div>
+            {# Rotate #}
+            {# ###################################################################### #}
+            <div class="card" style="width:30rem;  margin:20px 0px;">
+                <div class="card-body">
+                    <h2 class="card-title" >Rotate :</h2>
+
+                        <form action="/rotate" method="post">
+
+                            <input type="hidden" name="filename" value="{{image_name}}">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">rotate :</span>
+                                <input type="text" pattern="\d+" class="form-control" name="degree">
+                                <span class="input-group-text">degree</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">rotate</button>
+                        </form>
+                </div>
+            </div>
+            {# flip #}
+            {# ###################################################################### #}
+            <div class="card" style="width:30rem;  margin:20px 0px;">
+                <div class="card-body">
+                    <h2 class="card-title" >Flip :</h2>
+                        <form action="/flip" method="post">
+
+                            <input type="hidden" name="filename" value="{{image_name}}">
+                            <div class="input-group mb-3">
+                                <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="direction">
+                                <option value="horizontal">horizontal</option>
+                                <option value="vertical">vertical</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">flip</button>
+                        </form>
+                </div>
+            </div>
+        {# to filters page #}
+        <a style="width: 109%;" href="{{url_for('image_filter', image_name=image_name)}}" class="btn btn-primary">filters</a>
+        </div>
+
+        
+    </div>
+</div>
+
+{% endblock base %}

@@ -1,0 +1,64 @@
+{% extends "main/base.jinja" %}
+{% from "partials/_macros.jinja" import box %}
+{# {%from "partials/_macros.jinja" import  %} #}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+
+          <!-- Box 1 -->
+          {# {% from "macros.html" import box %} #}
+          {{box("ارباح الشهر",
+            "مقارنة مع الشهر الماضي",
+            monthly_data['month_subs_sum'] ~ "$",
+            monthly_data['month_sum_percentage'],
+          "fas fa-coins fa-2x")}}
+
+
+          {{ box("مشتركين الشهر",
+            "مقارنة مع الشهر الماضي",
+            monthly_data['month_subs_count'],
+            monthly_data['month_count_percentage'],
+          "fas fa-user-plus fa-2x") }}
+
+          {{ box("مشتركين الشهر",
+            "مقارنة مع مجمل الشركات",
+            monthly_data['total_count'],
+            monthly_data['total_count_percentage'],
+          "fas fa-user fa-2x") }}
+
+          {{ box("ارباح الشهر",
+            "مقارنة مع الشهر الماضي",
+            monthly_data['total_sum'] ~ "$",
+            monthly_data['total_sum_percentage'],
+          "fas fa-money-bill-trend-up fa-2x") }}
+          {# ######################## #}
+ 
+        </div>
+        <div class="mt-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h6>نظرة عامة على الاشتراكات</h6>
+              <p class="text-sm">
+                {# اتجاه السهم  #}
+                <i class="{{'fa fa-arrow-up text-success' if monthly_data['month_count_percentage'] > 0 else 'fa fa-arrow-up text-success'}}"></i>
+                <span class="font-weight-bold">{{monthly_data['month_count_percentage'] | int}}% تغيير</span>
+                عن الشهر السابق
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <!-- plot -->
+              <div id="chart" class="chart">
+                {# {{graph_json}} #}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+<script>var chart = {{graph_json | safe}};</script>
+<script src="{{url_for('static', filename='js/subscribe_plot.js')}}"></script>
+{% endblock %}

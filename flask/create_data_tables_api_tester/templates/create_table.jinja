@@ -1,0 +1,63 @@
+{% extends "base.jinja" %}
+{% block base %}
+
+{% if table == "create_table" %}
+<div class="card" style="width: 30rem; padding:2%;  margin: 25px auto">
+    <form action="{{url_for('createtable')}}" method="POST">
+        {# filename: <input name=filename type="text"><br/>
+        row: <input name=row type="number"><br/>
+        type: <input name=type type="text"><br/>
+        <input type="submit"> #}
+            <label for="filename_input" class="form-label">filename</label>
+            <input type="text" name="filename" id="filename_input" class="form-control" aria-describedby="passwordHelpBlock">
+
+            <label for="row_input" class="form-label">number of rows</label>
+            <input type="number" min="1" name="row" id="row_input" class="form-control" aria-describedby="passwordHelpBlock" required>
+
+            <label for="type_input" class="form-label">file type</label>
+            <select id="type_input" class="form-select" name="type" aria-label="Default select example" required>
+                <option value="csv">csv</option>
+                <option value="xlsx">excle</option>
+                <option value="db">database</option>
+                <option value="html">html</option>
+            </select>
+            
+            <button type="submit" class="btn btn-primary" style="width:100%; margin: 20px 0px 0px;">create table</button>
+
+
+    </form>
+</div>
+{% else %}
+<div class="card" style="width: 30rem; padding:2%;  margin: 25px auto">
+    <form action="{{url_for('createtable_html')}}" method="POST">
+        
+
+
+
+            <label for="filename_input" class="form-label">filename</label>
+            <input type="text" name="filename" id="filename_input" class="form-control" aria-describedby="passwordHelpBlock">
+            {# 
+                نستخدم مثلا
+                https://en.wikipedia.org/wiki/World_population
+                الجدول الاول
+             #}
+            <label for="weburl" class="form-label">web url</label>
+            <input type="text" name="weburl" id="weburl" class="form-control" aria-describedby="passwordHelpBlock">
+
+            <label for="tablenum" class="form-label">table number</label>
+            <input type="number" min="1" name="tablenum" id="tablenum" class="form-control" aria-describedby="passwordHelpBlock" required>
+
+            <label for="type_input" class="form-label">file type</label>
+            <select id="type_input" class="form-select" name="type" aria-label="Default select example" required>
+                <option value="csv">csv</option>
+                <option value="xlsx">excle</option>
+                <option value="db">database</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin: 20px 0px 0px;">create table</button>
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock base %}

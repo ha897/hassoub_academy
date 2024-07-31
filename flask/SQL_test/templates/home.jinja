@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .home-main{
+        width: fit-content;
+        margin: auto;
+        text-align: center;
+    }
+    .level{
+        text-decoration: none;
+        color: black;
+        border-radius: 10px;
+        display: inline-block;
+        padding: 20px;
+        font-weight: bold;
+    }
+    .level-Easy{
+        background-color: green;
+    }
+    .level-Meduam{
+        background-color: blue;
+    }
+    .level-Hard{
+        background-color: red;
+    }
+    </style>
+</head>
+<body>
+    <div class="home-main">
+    <h1>learn SQLite</h1>
+    <h3 style="margin: 0px 0px 5px 0px;">levels:</h3>
+    <a href="{{url_for('test',num=1)}}"><div class="level level-Easy">Easy</div></a>
+    <a href="{{url_for('test',num=2)}}"><div class="level level-Meduam">Meduam</div></a>
+    <a href="{{url_for('test',num=3)}}"><div class="level level-Hard">Hard</div></a>
+    </div>
+</body>
+</html>

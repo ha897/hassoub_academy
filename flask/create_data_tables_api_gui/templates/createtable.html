@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block base %}
+
+<style>
+    body {
+        background:#90caf9;
+    }
+</style>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid" >
+    <a class="navbar-brand" href="{{url_for('home')}}">home</a>
+    </div>
+</nav>
+<div class="card" style="width: 500px;margin:3% auto;">
+    <div class="card-body">
+        <form class="row g-3" method="POST" action="{{url_for('createtableD', way = "faker")}}">
+            
+            <!--filename-->
+            <div class="mb-3">
+                <label for="filename" class="form-label">filename</label>
+                <input type="text" name="filename" class="form-control" id="filename">
+            </div>
+            
+            <!--type-->
+            <div class="mb-3">
+                <select name="type" class="form-select" aria-label="Default select example">
+                    <option  value="csv">csv</option>
+                    <option value="xlsx">excle file</option>
+                    <option value="db">data base</option>
+                    <option value="html">html</option>
+                  </select>
+            </div>
+
+            <!--row-->
+            <div class="mb-3">
+                <label for="row" class="form-label">rows number</label>
+                <input type="number" min="1" class="form-control" name="row" id="row" required>
+            </div> 
+
+            <button type="submit" class="btn btn-primary">create</button>
+        </form>
+    </div>
+</div>
+{% endblock base %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{%block title%}
+view
+{%endblock title%}
+
+{% block body %}
+<h1>{{data.name}}</h1>
+<h1>{{unit}}</h1>
+<ul>
+    {% if unit == "metric" %}
+        <li><h2>weather : {{data.weather[0].main}}</h2></li>
+        <li>description weather : {{data.weather[0].description}}</li>
+        <li><h2>weather temp : {{data.main.temp}}</h2></li>
+        <li><h2>weather pressure : {{data.main.pressure}}</h2></li>
+        <!-- الرطوبة -->
+        <li><h2>weather humidity : {{data.main.humidity}}</h2></li>
+        <li><h2>weather sea_level : {{data.main.sea_level}}</h2></li>
+        <li><h2>weather wind speed : {{data.wind.speed}}</h2></li>
+    {% else %}
+        <li><h2>weather : {{data.weather[0].main}}</h2></li>
+        <li>description weather : {{data.weather[0].description}}</li>
+        <li><h2>weather temp : {{data.main.temp}}</h2></li>
+        <li><h2>weather pressure : {{data.main.pressure}}</h2></li>
+        <!-- الرطوبة -->
+        <li><h2>weather humidity : {{data.main.humidity}}</h2></li>
+        <li><h2>weather sea_level : {{data.main.sea_level}}</h2></li>
+        <li><h2>weather wind speed : {{data.wind.speed}}</h2></li>
+    {% endif %}
+</ul>
+{% endblock body %}

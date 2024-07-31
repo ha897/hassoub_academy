@@ -1,0 +1,15 @@
+{% extends "main/base.jinja" %}
+{% include "partials/account/mobal_account.jinja" %}
+{# {%from "partials/mobal_article.jinja" import modal%} #}
+
+{% block content %}
+  <div class="container">
+  
+    {% include "partials/account/user_detail.jinja" %}
+    {% if current_user.is_admin %}
+      {% include "partials/account/user_articles.jinja" %}
+    {% else %}
+    {% endif %}
+
+  </div>
+{% endblock content %}
